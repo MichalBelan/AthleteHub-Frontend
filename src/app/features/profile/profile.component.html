@@ -1,0 +1,13 @@
+<div class="container mt-5">
+  <div class="card shadow p-4">
+    <ng-container *ngIf="user() as u; else loading">
+      <h2 class="text-primary">Vitaj, {{ u.name }}</h2>
+      <p><strong>Email:</strong> {{ u.email }}</p>
+      <p><strong>Rola:</strong> {{ u.role }}</p>
+      <button class="btn btn-danger mt-3" (click)="logout()">Odhlásiť sa</button>
+    </ng-container>
+    <ng-template #loading>
+      <p>Načítavam údaje o používateľovi...</p>
+    </ng-template>
+  </div>
+</div>
