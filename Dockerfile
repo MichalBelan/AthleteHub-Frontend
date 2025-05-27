@@ -22,6 +22,7 @@ FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy the Angular app to the Nginx webserver's root directory
+# The build output is in the 'dist/athlete-hub-frontend/browser' directory
 COPY --from=build /app/dist/athlete-hub-frontend/browser /usr/share/nginx/html
 
 
