@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #413e3e;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  background-color: #1e1e1e;
+  border: none;
+  border-radius: 1rem;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #f5b400;
+  border: none;
+  &:hover {
+    background-color: #e0a800;
+  }
+}
+
+input.form-control {
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  color: #fff;
+}
+
+/* Zvýraznenie aktívnej položky */
+.nav-link.active {
+  font-weight: bold;
+  color: #ffc107 !important; // žltá ako GYMBA
+}
+
+/* Prispôsobenie navigácie */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #ffc107;
+}

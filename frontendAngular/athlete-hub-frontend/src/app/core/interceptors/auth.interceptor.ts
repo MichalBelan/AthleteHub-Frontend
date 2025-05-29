@@ -1,12 +1,15 @@
 import { inject } from '@angular/core';
 import { HttpInterceptorFn } from '@angular/common/http';
-import { UserService } from '../services/user.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const userService = inject(UserService);
-  const token = userService.token;
+  const oauthService = inject(OAuthService);
+  const token = oauthService.getAccessToken();
 
-  if (token) {
+  
+  const isRegisterRequest = req.url.endsWith('/api/users') && req.method === 'POST';
+
+  if (token && !isRegisterRequest) {
     const cloned = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`

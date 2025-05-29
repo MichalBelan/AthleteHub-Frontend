@@ -1,0 +1,52 @@
+<div class="container py-4">
+  <h3 class="text-warning mb-4">🎯 Moje ciele</h3>
+
+  <form [formGroup]="form" (ngSubmit)="create()" class="bg-dark text-light p-4 rounded shadow mb-5">
+    <div class="mb-3">
+      <label class="form-label">📝 Popis</label>
+      <input
+        type="text"
+        class="form-control bg-secondary text-light border-0"
+        formControlName="description"
+        placeholder="Zabehnúť 10km"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">📅 Cieľový dátum</label>
+      <input
+        type="date"
+        class="form-control bg-secondary text-light border-0"
+        formControlName="targetDate"
+        title="Zadajte cieľový dátum"
+      />
+    </div>
+
+    <button class="btn btn-warning w-100 mt-3 fw-bold" type="submit" [disabled]="form.invalid">
+      ➕ Pridať cieľ
+    </button>
+  </form>
+
+  <div class="row gy-3">
+    <div *ngFor="let goal of goals()" class="col-12">
+      <div class="card bg-dark text-light shadow-sm border-0 rounded px-3 py-3 d-flex flex-md-row flex-column align-items-center justify-content-between">
+        <div>
+          <h5 class="mb-1">{{ goal.description }}</h5>
+          <small class="text-muted">Do: {{ goal.targetDate }}</small>
+        </div>
+        <div class="d-flex align-items-center gap-3 mt-3 mt-md-0">
+          <span class="badge rounded-pill"
+                [ngClass]="{
+                  'bg-success': goal.achieved,
+                  'bg-secondary': !goal.achieved
+                }">
+            {{ goal.achieved ? '✔️ Splnené' : '⏳ Nesplnené' }}
+          </span>
+          <button class="btn btn-outline-light btn-sm" (click)="toggle(goal)">
+            🔁 Prepni stav
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

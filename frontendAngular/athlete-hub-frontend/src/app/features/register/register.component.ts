@@ -1,10 +1,9 @@
-import {Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {environment} from '../../../environments/environment.development';
-
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-register',
@@ -24,8 +23,8 @@ export class RegisterComponent {
     this.form = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-      // role: ['ATHLETE', Validators.required] ← toto vymaž
+      password: ['', Validators.required],
+      role: ['ATHLETE', Validators.required] // predvolené nastavenie na ATHLETE
     });
   }
 

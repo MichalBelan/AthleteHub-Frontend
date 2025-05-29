@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import {authCodeFlowConfig} from '../config/authCodeFlowConfig.config';
+import { authCodeFlowConfig } from '../config/authCodeFlowConfig.config';
 
 export interface UserDto {
   id: number;
@@ -16,7 +16,7 @@ export class UserService {
   private user = signal<UserDto | undefined>(undefined);
 
   constructor(private oauthService: OAuthService, private http: HttpClient) {
-    this.oauthService.configure(authCodeFlowConfig); // ← Uisti sa, že to máš
+    this.oauthService.configure(authCodeFlowConfig);
   }
 
   /** Číta readonly signal používateľa */
@@ -44,16 +44,20 @@ export class UserService {
 
   /** Odhlási používateľa */
   logout() {
-    this.oauthService.logOut();
+    this.oauthService.logOut({ postLogoutRedirectUri: window.location.origin });
   }
 
   /** Načíta informácie o prihlásenom používateľovi */
   private loadUserInfo() {
     this.http.get<UserDto>(environment.beUrl + '/api/users/me').subscribe({
       next: user => this.user.set(user),
-      error: err => console.error('Nepodarilo sa načítať používateľa:', err)
+      error: err => {
+        console.error('Nepodarilo sa načítať používateľa:', err);
+        this.user.set(undefined); // Fallback na "neprihlásený"
+      }
     });
   }
+
 
   /** Getter pre access token – ak ho niekde potrebuješ */
   get token() {

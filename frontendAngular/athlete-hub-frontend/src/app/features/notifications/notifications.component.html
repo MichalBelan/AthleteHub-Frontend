@@ -1,0 +1,28 @@
+<div class="container py-4">
+  <h3 class="text-info mb-4">🔔 Notifikácie</h3>
+
+  <div *ngIf="notifications().length === 0" class="alert alert-secondary text-center">
+    Žiadne nové notifikácie.
+  </div>
+
+  <div class="list-group">
+    <div
+      *ngFor="let n of notifications()"
+      class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center bg-dark text-light border-secondary"
+    >
+      <div>
+        <i class="fas fa-info-circle me-2"></i>
+        <span [class.text-muted]="n.read">{{ n.message }}</span>
+      </div>
+
+      <button
+        *ngIf="!n.read"
+        class="btn btn-sm btn-outline-info"
+        (click)="markAsRead(n.id)"
+        title="Označiť ako prečítané"
+      >
+        ✔️ Prečítané
+      </button>
+    </div>
+  </div>
+</div>

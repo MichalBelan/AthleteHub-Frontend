@@ -1,0 +1,13 @@
+.card, .form-control, .btn {
+  transition: all 0.3s ease-in-out;
+  border-radius: 12px;
+}
+
+.btn-warning {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+body {
+  background-color: #1c1c1c;
+}

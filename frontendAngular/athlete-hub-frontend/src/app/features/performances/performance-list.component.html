@@ -1,0 +1,47 @@
+<div class="container py-4">
+  <h3 class="text-warning mb-4">📊 Výkonnostné záznamy</h3>
+
+  <form [formGroup]="form" (ngSubmit)="create()" class="bg-dark text-light p-4 rounded shadow mb-5">
+    <div class="mb-3">
+      <label for="exerciseId" class="form-label">🏋️‍♂️ ID cviku</label>
+      <input
+        id="exerciseId"
+        type="number"
+        formControlName="exerciseId"
+        class="form-control bg-secondary text-light border-0"
+        placeholder="Zadaj ID cviku"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="result" class="form-label">📈 Výsledok</label>
+      <input
+        id="result"
+        type="number"
+        formControlName="result"
+        class="form-control bg-secondary text-light border-0"
+        placeholder="Zadaj výsledok"
+      />
+    </div>
+
+    <button class="btn btn-warning w-100 fw-bold mt-3" type="submit" [disabled]="form.invalid">
+      ➕ Pridať výkon
+    </button>
+  </form>
+
+  <div class="row gy-3">
+    <div *ngFor="let perf of performances()" class="col-12">
+      <div class="card bg-dark text-light shadow-sm border-0 rounded p-3 d-flex justify-content-between align-items-start flex-md-row flex-column">
+        <div>
+          <h5 class="mb-1">🆔 Cvik: {{ perf.exerciseId }}</h5>
+          <p class="mb-1">Výsledok: {{ perf.result }}</p>
+        </div>
+        <div class="text-end mt-2 mt-md-0">
+          <span class="badge bg-warning text-dark fs-6">
+            👤 Atlét: {{ perf.athleteId }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
